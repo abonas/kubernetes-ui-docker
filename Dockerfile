@@ -5,6 +5,8 @@
 # for a list of version numbers.
 FROM phusion/baseimage:0.9.16
 
+MAINTAINER Patrick Reilly <patrick@kismatic.io>
+
 # Set correct environment variables.
 ENV HOME /root
 
