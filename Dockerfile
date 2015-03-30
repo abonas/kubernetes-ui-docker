@@ -46,5 +46,8 @@ RUN sudo mkdir -p /mnt/kubernetes-ui
 # Clean up APT when done.
 RUN apt-get clean && rm -rf /var/lib/apt/lists/* /tmp/* /var/tmp/*
 
+COPY docker-entrypoint.sh /entrypoint.sh
+ENTRYPOINT ["/entrypoint.sh"]
+
 # expose port 8001
 EXPOSE 8001
