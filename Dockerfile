@@ -20,10 +20,14 @@ CMD ["/sbin/my_init"]
 RUN sudo apt-get update
 
 # we'll need wget to fetch the key...
-RUN sudo apt-get install -y wget
+RUN sudo apt-get install -y \
+  wget \
+  unzip
 
 # install kubernetes-ui
-RUN wget -O - https://github.com/kubernetes-ui/kubernetes-ui/releases/download/v0.1-beta.3/kubernetes-ui.archive
+RUN mkdir -p /opt/kubernetes-ui
+RUN cd /opt/kubernetes-ui && wget -q https://github.com/kubernetes-ui/kubernetes-ui/releases/download/v0.1-beta.3/kubernetes-ui.archive && unzip kubernetes-ui.archive
+WORKDIR /opt/kubernetes-ui
 
 # install nginx
 RUN sudo apt-get install -y nginx
@@ -36,7 +40,7 @@ RUN chmod 700 /etc/service/nginx/run
 # set up nginx default site
 ADD nginx-default /etc/nginx/sites-available/default
 
-# create a directory with a sample index.hh file
+# create a directory with a sample index.html file
 RUN sudo mkdir -p /mnt/kubernetes-ui
 
 # Clean up APT when done.
