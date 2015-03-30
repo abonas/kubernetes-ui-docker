@@ -26,5 +26,5 @@ docker run \
 -e ENV_K8S_DATA_POLL_ERROR_THRESHOLD=5 \
 -e ENV_C_ADVISOR_PROXY="http://104.154.65.114:9090/proxy?TARGET=" \
 -e ENV_C_ADVISOR_PORT=4194 \
--t -p 8001 kubernetes-ui
+-t -p 8001:80 kubernetes-ui
 ```

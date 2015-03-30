@@ -42,8 +42,8 @@ RUN chmod 700 /etc/service/nginx/run
 # set up nginx default site
 ADD nginx-default /etc/nginx/sites-available/default
 
-# create a directory with a sample index.html file
-RUN sudo mkdir -p /mnt/kubernetes-ui
+# create symlink to kubernetes directory
+RUN sudo ln -s /opt/kubernetes-ui/kubernetes-ui/www/app /mnt/kubernetes-ui
 
 # Clean up APT when done.
 RUN apt-get clean && rm -rf /var/lib/apt/lists/* /tmp/* /var/tmp/*
